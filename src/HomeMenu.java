@@ -12,15 +12,14 @@ public class HomeMenu {
                             "| Insira 'i' para ver instruções                                                                          |\n" +
                             "| Insira 'r' para reiniciar o jogo                                                                        |\n" +
                             "| Insira 's' para sair                                                                                    |\n" +
-                            "| Ou insira qualquer digito para retornar ao menu principal                                               |\n" +
+                            "| Ou insira qualquer outro digito para retornar ao menu principal                                         |\n" +
                             "|---------------------------------------------------------------------------------------------------------|\n" +
                             "Insira sua opção aqui:");
 
             String choose = sc.next().toLowerCase();
 
             if (choose.equals("s")) {
-                System.out.print("OBRIGADA POR JOGAR O JOGO DA VELHA! ATÉ MAIS!");
-                System.exit(0);
+                EndGame.endGame();
             } else if (choose.equals("i")) {
                 Instructions.instructions();
                 homeMenu();

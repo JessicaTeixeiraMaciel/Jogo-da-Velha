@@ -3,7 +3,7 @@
 import java.util.Scanner;
 
 public class OptionsMenu {
-    public static void optionsMenu(){
+    public static void optionsMenu(String[] args){
         Scanner sc = new Scanner(System.in);
         CleanScreen.cleanScreen();
         System.out.println(
@@ -13,7 +13,7 @@ public class OptionsMenu {
                         "| Insira 'i' para ver instruções                                                                          |\n" +
                         "| Insira 'r' para reiniciar o jogo                                                                        |\n" +
                         "| Insira 's' para sair                                                                                    |\n" +
-                        "| Ou insira qualquer digito para ir para próxima rodada                                                   |\n" +
+                        "| Ou insira qualquer outro digito para retomar a partida                                                  |\n" +
                         "|---------------------------------------------------------------------------------------------------------|\n" +
                 "Insira sua opção aqui:");
 
@@ -21,15 +21,17 @@ public class OptionsMenu {
 
         switch (choose) {
             case "s":
-                System.out.print("OBRIGADA POR JOGAR O JOGO DA VELHA! ATÉ MAIS!");
-                System.exit(0);
+                EndGame.endGame();
             case "i":
                 Instructions.instructions();
-                optionsMenu();
+                optionsMenu(args);
                 break;
             case "r":
-                Start.start();
+                Main.main(args);
                 break;
+
+            default:
+                CleanScreen.cleanScreen();
         }
     }
 }

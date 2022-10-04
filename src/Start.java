@@ -15,6 +15,5 @@ public class Start {
         if (choose.equals("m")) {
             HomeMenu.homeMenu();
         }
-
     }
 }

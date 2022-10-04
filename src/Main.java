@@ -1,29 +1,22 @@
-import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        //Classe com a tela inicial do jogo.
+        //Tela inicial do jogo.
         Start.start();
 
-        //Classe que limpa a tela
+        //Limpa a tela
         CleanScreen.cleanScreen();
 
-        //Informa para o usuário que o jogo irá iniciar.
         System.out.println("\nOk, vamos começar!\n");
 
-        //Pergunta o nome dos jogadores. Armazena os nomes nas Strings player1 e player2. Também incializa os símbolos de cada jogador.
         String[] playersNames = playerNames();
         String[] playersSymbol = {"X", "O"};
 
-        //Informa para o usuário os simbólos de cada jogador.
-        System.out.printf("\nEntendido! %s jogará com o xis 'X' e %s jogará com o círculo 'O'.\n", playersNames[0], playersNames[1]);
+        System.out.printf("\nEntendido! %s jogará com o xis 'X' e %s jogará com o círculo 'O'.\n\n", playersNames[0], playersNames[1]);
 
-        //Chama a função, dentro da classe Main, que roda o jogo.
-        Game(playersNames[0], playersSymbol[0], playersNames[1], playersSymbol[1]);
-
-        // finalizar jogo dizendo obrigado
+        Game(playersNames[0], playersSymbol[0], playersNames[1], playersSymbol[1],args);
     }
 
     private static String[] playerNames() {
@@ -37,8 +30,7 @@ public class Main {
         return playersArray;
     }
 
-    //Função principal que roda o jogo (incompleta).
-    public static void Game(String player1, String player1Symbol, String player2, String player2Symbol) {
+    public static void Game(String player1, String player1Symbol, String player2, String player2Symbol,String[] args) {
 
         //Armazena a numeração de cada rodada.
         int round = 1;
@@ -56,20 +48,21 @@ public class Main {
         //Indica quando a rodada deve terminar, cumprindo as seguintes condições:
         //- Alguém vencer (quando a função checkWinner retornar 'true');
         //- Ou tiver mais de 9 jogadas (automáticamente o resultado será 'velha').
-
         boolean rematch = true;
         do {
             //Chama as classes que exibem a rodada e placar.
             Rounds.rounds(round);
             //score(player1, player2);
 
+            score(player1,scoreBoard, player2);
+
             //Armazenará a numeração partida
             int turn = 0;
 
             Scanner sc = new Scanner(System.in);
-            while ((!checkWinner) && (turn <= 8)) {
+            while ((!checkWinner(boardPositions)) && (turn <= 8)) {
+
             //Intercala as jogadas entre os jogadores '1' e '2'.
-            // Devo usar o round para testar a rodada atual, para poder puxa-lo no winner
             turn++;
             if (turn % 2 == 1) {
                 player = player1;
@@ -87,24 +80,20 @@ public class Main {
             System.out.println("Informe sua jogada:");
             String choice = sc.next();
 
-            // muda a posição escolhida pelo jogador pelo seu símbolo
+            //Muda a posição escolhida pelo jogador pelo seu símbolo
             changePosition(choice, boardPositions, playerSymbol);
         }
             if (turn>=8){
-                rematch = tie(boardPositions);
+                tie(boardPositions,player1,scoreBoard, player2,args);
             } else {
-                rematch = win(boardPositions,player);
-                if (player.equals(player1)){
-                    scoreBoard[0]++;
-                } else{
-                    scoreBoard[1]++;
-                }
-                System.out.printf("RODADA %d PLACAR: %s %d VS %d %s\n", round, player1, scoreBoard[0], scoreBoard[1], player2);
+                win(boardPositions,player,player1,scoreBoard, player2,playerSymbol,args);
             }
             round++;
+
+            // limpa o tabuleiro
+            boardPositions = new String[][]{{"1", "2", "3"}, {"4", "5", "6"}, {"7", "8", "9"}};
         } while (rematch);
 
-        // colocar mensagem de obrigado por jogar
         CleanScreen.cleanScreen();
     }
 
@@ -153,46 +142,63 @@ public class Main {
     }
 
     // Função que retorna a variável de controle do DoWhile caso haja vencedor
-    public static boolean win(String[][] boardPositions, String player){
-        Scanner sc = new Scanner(System.in);
+    public static void win(String[][] boardPositions, String player, String player1, int[] scoreBoard, String player2, String playerSymbol,String[] args){
 
-        System.err.printf("\n%s VENCEU A RODADA. JOGADOR MARCA +1 PONTO.", player);
-        board(boardPositions);
-        System.out.println("\n---------------------------------------------- FIM DA RODADA ----------------------------------------------\n");
-        boolean revanche;
-        System.out.println("Revanche? (s/n)");
-        String choose = sc.next().toLowerCase();
-        if (choose.equals("s")) {
-            return revanche = true;
-        }else{
-            return revanche = false;
+        if (player.equals(player1)){
+            scoreBoard[0]++;
+        } else{
+            scoreBoard[1]++;
         }
+        System.err.printf("\n'%s' VENCEU A RODADA! %s MARCA +1 PONTO.\n", playerSymbol, player);
+        score(player1,scoreBoard, player2);
+        endRound(boardPositions, "Revanche?",player1,scoreBoard, player2,args);
     }
-    //Método (devido a maior facilidade de acessar board positions) para quando há EMPATE no jogo
 
-    public static boolean tie(String[][] boardPositons){
+    public static void tie(String[][] boardPositions, String player1, int[] scoreBoard, String player2,String[] args){
         System.err.println("\nDEU VELHA!!! NINGUÉM MARCA PONTO.");
-        board(boardPositons);
-        System.out.println("\n---------------------------------------------- FIM DA RODADA ----------------------------------------------\n");
-        boolean revanche;
+        score(player1,scoreBoard, player2);
+        endRound(boardPositions, "Jogar novamente?",player1,scoreBoard, player2,args);
+    }
+
+    public static void endRound (String[][] boardPositions, String playAgain, String player1, int[] scoreBoard, String player2,String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Jogar novamente? (s/n)");
+        board(boardPositions);
+        System.out.println("\n---------------------------------------------- FIM DA RODADA ----------------------------------------------");
+        System.out.println(playAgain + " (s/n)\n" +
+                "Para acessar o menu de opções insira qualquer outro digito:");
         String choose = sc.next().toLowerCase();
         if (choose.equals("s")) {
-            return revanche = true;
-        }else{
-            return revanche = false;
+            CleanScreen.cleanScreen();
+        }else if (choose.equals("n")){
+            System.out.println("\nFIM DE JOGO!");
+            score(player1,scoreBoard, player2);
+            EndGame.endGame();
+        }else {
+            OptionsMenu.optionsMenu(args);
         }
     }
 
-    //Função que checa se há um vencedor (incompleta).
-    public static boolean checkWinner(){
+    //Função que checa se há um vencedor.
+    public static boolean checkWinner(String[][] boardPositions){
 
-        return false;
+        if((boardPositions[0][0].equals(boardPositions[0][1])) && (boardPositions[0][1].equals(boardPositions[0][2]))){
+            return true;
+        } else if ((boardPositions[1][0].equals(boardPositions[1][1])) && (boardPositions[1][1].equals(boardPositions[1][2]))) {
+            return true;
+        }else if ((boardPositions[2][0].equals(boardPositions[2][1])) && (boardPositions[2][1].equals(boardPositions[2][2]))) {
+            return true;
+        }else if ((boardPositions[0][0].equals(boardPositions[1][0])) && (boardPositions[1][0].equals(boardPositions[2][0]))) {
+            return true;
+        }else if ((boardPositions[0][1].equals(boardPositions[1][1])) && (boardPositions[1][1].equals(boardPositions[2][1]))) {
+            return true;
+        }else if ((boardPositions[0][2].equals(boardPositions[1][2])) && (boardPositions[1][2].equals(boardPositions[2][2]))) {
+            return true;
+        }else if ((boardPositions[0][0].equals(boardPositions[1][1])) && (boardPositions[1][1].equals(boardPositions[2][2]))) {
+            return true;
+        }else return (boardPositions[0][2].equals(boardPositions[1][1])) && (boardPositions[1][1].equals(boardPositions[2][0]));
     }
 
-    //Função que soma e exibe o placar (incompleta).
-//    public static void score(String player1,String player1, String player2,int[] scoreBoard){
-//        System.out.printf("PLACAR: %s %d VS %d %s\n",player1,scoreBoard[0],scoreBoard[1],player2);
-//    }
+    public static void score(String player1, int[] scoreBoard, String player2){
+        System.out.printf("PLACAR: %s %d VS %d %s\n", player1, scoreBoard[0], scoreBoard[1], player2);
+    }
 }
