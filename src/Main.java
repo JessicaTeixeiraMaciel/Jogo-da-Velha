@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        //Tela inicial do jogo.
+        //Tela inicial do jogo. olá
         Start.start();
 
         //Limpa a tela
