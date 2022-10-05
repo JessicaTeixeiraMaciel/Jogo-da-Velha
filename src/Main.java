@@ -24,13 +24,18 @@ public class Main {
         String[] playersArray = {"abc","cde"};
 
         for (int i = 0; i < 2; i++) {
-            System.out.printf("Insira o nome do %dª jogador:\n", i + 1);
-            playersArray[i] = sc.next().toUpperCase();
+            System.out.printf("Insira nome do %dª jogador:\n", i + 1);
+            String name = sc.nextLine();
+            if (name.trim().equals("")){
+                i--;
+            } else{
+                playersArray[i] = name.toUpperCase();
+            }
         }
         return playersArray;
     }
 
-    public static void Game(String player1, String player1Symbol, String player2, String player2Symbol,String[] args) {
+    public static void Game(String playerOne, String playerOneSymbol, String playerTwo, String playerTwoSymbol,String[] args) {
 
         //Armazena a numeração de cada rodada.
         int round = 1;
@@ -39,22 +44,19 @@ public class Main {
         int[] scoreBoard = {0,0};
 
         //inicializa o jogador e o símbolo
-        String player = player1;
-        String playerSymbol = player1Symbol;
+        String player = playerOne;
+        String playerSymbol = playerOneSymbol;
 
         //Cria a matriz de posições do tabuleiro
         String[][] boardPositions = {{"1", "2", "3"}, {"4", "5", "6"}, {"7", "8", "9"}};
 
-        //Indica quando a rodada deve terminar, cumprindo as seguintes condições:
-        //- Alguém vencer (quando a função checkWinner retornar 'true');
-        //- Ou tiver mais de 9 jogadas (automáticamente o resultado será 'velha').
         boolean rematch = true;
         do {
             //Chama as classes que exibem a rodada e placar.
             Rounds.rounds(round);
-            //score(player1, player2);
 
-            score(player1,scoreBoard, player2);
+            //score(playerOne, playerTwo);
+            score(playerOne,scoreBoard, playerTwo);
 
             //Armazenará a numeração partida
             int turn = 0;
@@ -65,11 +67,11 @@ public class Main {
             //Intercala as jogadas entre os jogadores '1' e '2'.
             turn++;
             if (turn % 2 == 1) {
-                player = player1;
-                playerSymbol = player1Symbol;
+                player = playerOne;
+                playerSymbol = playerOneSymbol;
             } else {
-                player = player2;
-                playerSymbol = player2Symbol;
+                player = playerTwo;
+                playerSymbol = playerTwoSymbol;
             }
 
             System.out.printf("\nÉ a vez do '%s' jogar! %s, escolha uma posição livre:", playerSymbol, player);
@@ -77,6 +79,7 @@ public class Main {
             //Chama método que exibe o tabuleiro.
             board(boardPositions);
 
+            // Tratar as entradas do jogador
             System.out.println("Informe sua jogada:");
             String choice = sc.next();
 
@@ -84,9 +87,9 @@ public class Main {
             changePosition(choice, boardPositions, playerSymbol);
         }
             if (turn>=8){
-                tie(boardPositions,player1,scoreBoard, player2,args);
+                tie(boardPositions,playerOne,scoreBoard, playerTwo,args);
             } else {
-                win(boardPositions,player,player1,scoreBoard, player2,playerSymbol,args);
+                win(boardPositions,player,playerOne,scoreBoard, playerTwo,playerSymbol,args);
             }
             round++;
 
@@ -142,25 +145,25 @@ public class Main {
     }
 
     // Função que retorna a variável de controle do DoWhile caso haja vencedor
-    public static void win(String[][] boardPositions, String player, String player1, int[] scoreBoard, String player2, String playerSymbol,String[] args){
+    public static void win(String[][] boardPositions, String player, String playerOne, int[] scoreBoard, String playerTwo, String playerSymbol,String[] args){
 
-        if (player.equals(player1)){
+        if (player.equals(playerOne)){
             scoreBoard[0]++;
         } else{
             scoreBoard[1]++;
         }
         System.err.printf("\n'%s' VENCEU A RODADA! %s MARCA +1 PONTO.\n", playerSymbol, player);
-        score(player1,scoreBoard, player2);
-        endRound(boardPositions, "Revanche?",player1,scoreBoard, player2,args);
+        score(playerOne,scoreBoard, playerTwo);
+        endRound(boardPositions, "Revanche?",playerOne,scoreBoard, playerTwo,args);
     }
 
-    public static void tie(String[][] boardPositions, String player1, int[] scoreBoard, String player2,String[] args){
+    public static void tie(String[][] boardPositions, String playerOne, int[] scoreBoard, String playerTwo,String[] args){
         System.err.println("\nDEU VELHA!!! NINGUÉM MARCA PONTO.");
-        score(player1,scoreBoard, player2);
-        endRound(boardPositions, "Jogar novamente?",player1,scoreBoard, player2,args);
+        score(playerOne,scoreBoard, playerTwo);
+        endRound(boardPositions, "Jogar novamente?",playerOne,scoreBoard, playerTwo,args);
     }
 
-    public static void endRound (String[][] boardPositions, String playAgain, String player1, int[] scoreBoard, String player2,String[] args){
+    public static void endRound (String[][] boardPositions, String playAgain, String playerOne, int[] scoreBoard, String playerTwo,String[] args){
         Scanner sc = new Scanner(System.in);
         board(boardPositions);
         System.out.println("\n---------------------------------------------- FIM DA RODADA ----------------------------------------------");
@@ -171,7 +174,7 @@ public class Main {
             CleanScreen.cleanScreen();
         }else if (choose.equals("n")){
             System.out.println("\nFIM DE JOGO!");
-            score(player1,scoreBoard, player2);
+            score(playerOne,scoreBoard, playerTwo);
             EndGame.endGame();
         }else {
             OptionsMenu.optionsMenu(args);

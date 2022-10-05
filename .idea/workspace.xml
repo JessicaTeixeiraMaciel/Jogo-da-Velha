@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeca3482-599b-4457-a83b-75eaff9c01a6" name="Changes" comment="Updates:&#10;Ajustes da funções checkWinner, score.&#10;Criação da EndGame.&#10;Criação da função endRound.&#10;&#10;Falta apenas o tratamento de erros:&#10;- Possíveis exceções (try catch);&#10;- Não deixar posições to tabuleiro se sobreescreverem.">
-      <change afterPath="$PROJECT_DIR$/src/EndGame.java" afterDir="false" />
+    <list default="true" id="aeca3482-599b-4457-a83b-75eaff9c01a6" name="Changes" comment="[03/10] Implementação de matrizes,vetores,doWhile&#10;&#10;Itens prontos:&#10;- Modelagem do programa;&#10;- Tela inicial;&#10;- Menus;&#10;- Instruções;&#10;- Solicitar e gravar nomes dos jogadores;&#10;- Contagem de rodadas;&#10;- Intercalar jogadores e simbolos;&#10;- Resultado Velha;&#10;- Métodos para criar matriz e suas posições;&#10;- Métodos win e tie para reinicar rodada&#10;&#10;&#10;&#10;Faltam os seguintes itens:&#10;- Completar função gamer;&#10;- Preencher função checkWinner;&#10;- Preencher a função score;&#10;- Tratamento de erros.">
+      <change afterPath="$PROJECT_DIR$/src/teste/teste2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HomeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HomeMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OptionsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OptionsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Start.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +60,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "C:/Users/jteix/IdeaProjects/ProjetoFinal_Modulo1_Deva",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -99,5 +100,10 @@
     <MESSAGE value="Commit inicial.&#10;&#10;Itens prontos:&#10;- Modelagem do programa;&#10;- Tela inicial;&#10;- Menus;&#10;- Instruções;&#10;- Solicitar e gravar nomes dos jogadores;&#10;- Contagem de rodadas;&#10;- Intercalar jogadores e simbolos;&#10;- Resultado Velha.&#10;&#10;&#10;Faltam os seguintes itens:&#10;- Criar matriz e atribuir suas respectivas posições ao tabuleiro (Classe Board);&#10;- Completar função gamer;&#10;- Preencher função checkWinner;&#10;- Preencher a função score;&#10;- Completar a classe win;&#10;- Tratamento de erros." />
     <MESSAGE value="Updates:&#10;Ajustes da funções checkWinner, score.&#10;Criação da EndGame.&#10;Criação da função endRound.&#10;&#10;Falta apenas o tratamento de erros:&#10;- Possíveis exceções (try catch);&#10;- Não deixar posições to tabuleiro se sobreescreverem." />
     <option name="LAST_COMMIT_MESSAGE" value="Updates:&#10;Ajustes da funções checkWinner, score.&#10;Criação da EndGame.&#10;Criação da função endRound.&#10;&#10;Falta apenas o tratamento de erros:&#10;- Possíveis exceções (try catch);&#10;- Não deixar posições to tabuleiro se sobreescreverem." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProjetoFinal_Modulo1_Deva$Teste.ic" NAME="Teste Coverage Results" MODIFIED="1664824538342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>teste.*</FILTER>
+    </SUITE>
   </component>
 </project>
