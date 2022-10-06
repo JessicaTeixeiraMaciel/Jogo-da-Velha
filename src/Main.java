@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        //Tela inicial do jogo. olá
+        //Tela inicial do jogo
         Start.start();
 
         //Limpa a tela
@@ -82,9 +82,25 @@ public class Main {
             // Tratar as entradas do jogador
             System.out.println("Informe sua jogada:");
             String choice = sc.next();
+            // Tratar entrada, digitar uma entrada válida (>0 e <10,numérico), método getChoice (para ja ir na retirada do indice tratado)
 
+            // transformar a posição escolhida em um array com os índices
+            int[] index = getChoiceIndex(choice);
+            boolean teste = availablePosition(index,boardPositions);
+
+            // Checa a posição está disponível
+            while (!teste){
+                System.out.println("Posição inválida. Escolha uma posição disponível:");
+                board(boardPositions);
+                System.out.println("Nova escolha:");
+                choice = sc.next();
+                index = getChoiceIndex(choice);
+                teste = availablePosition(index,boardPositions);
+            }
+
+            index = getChoiceIndex(choice); // é necessário?
             //Muda a posição escolhida pelo jogador pelo seu símbolo
-            changePosition(choice, boardPositions, playerSymbol);
+            changePosition(index, boardPositions, playerSymbol);
         }
             if (turn>=8){
                 tie(boardPositions,playerOne,scoreBoard, playerTwo,args);
@@ -101,6 +117,7 @@ public class Main {
     }
 
     //Função que imprime o tabuleiro a partir do vetor de posições atuais
+
     public static void board(String[][] positions) {
         System.out.printf("\n|-----|-----|-----|\n" +
                 "|  %s  |  %s  |  %s  |\n" +
@@ -111,37 +128,71 @@ public class Main {
                 "|-----|-----|-----|\n", positions[0][0], positions[0][1], positions[0][2], positions[1][0], positions[1][1], positions[1][2], positions[2][0], positions[2][1], positions[2][2]);
     }
 
-    //Função que muda o símbolo conforme a opção escolhida
-    public static void changePosition(String choice, String[][] boardPositions, String playerSymbol) {
+    // armazena em um vetor as posições na matriz da escolha
+    public static int[] getChoiceIndex(String choice){
+        int i = 0,j=0;
         switch (choice) {
             case "1":
-                boardPositions[0][0] = playerSymbol;
+                i=0;
+                j=0;
                 break;
             case "2":
-                boardPositions[0][1] = playerSymbol;
+                i=0;
+                j=1;
                 break;
             case "3":
-                boardPositions[0][2] = playerSymbol;
+                i=0;
+                j=2;
                 break;
             case "4":
-                boardPositions[1][0] = playerSymbol;
+                i=1;
+                j=0;
                 break;
             case "5":
-                boardPositions[1][1] = playerSymbol;
+                i=1;
+                j=1;
                 break;
             case "6":
-                boardPositions[1][2] = playerSymbol;
+                i=1;
+                j=2;
                 break;
             case "7":
-                boardPositions[2][0] = playerSymbol;
+                i=2;
+                j=0;
                 break;
             case "8":
-                boardPositions[2][1] = playerSymbol;
+                i=2;
+                j=1;
                 break;
             case "9":
-                boardPositions[2][2] = playerSymbol;
+                i=2;
+                j=2;
                 break;
         }
+        int[] index = {i,j};
+        return index;
+    }
+
+    // Função que checa se a posição está disponível e se é válida
+    public static boolean availablePosition(int[] index,String[][] boardPositions){
+        boolean available = false;
+        int i = index[0];
+        int j = index[1];
+        boolean equalsX = boardPositions[i][j].equals("X");
+        boolean equals0 = boardPositions[i][j].equals("O");
+        if ((equalsX) || (equals0)){
+            available = false;
+        } else {
+            available = true;
+        }
+        return available;
+    }
+
+    //Função que muda o símbolo conforme a opção escolhida
+    public static void changePosition(int[] index, String[][] boardPositions, String playerSymbol) {
+            int i = index[0];
+            int j = index[1];
+            boardPositions[i][j] = playerSymbol;
     }
 
     // Função que retorna a variável de controle do DoWhile caso haja vencedor
