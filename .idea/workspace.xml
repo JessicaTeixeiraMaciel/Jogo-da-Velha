@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeca3482-599b-4457-a83b-75eaff9c01a6" name="Changes" comment="[03/10] Implementação de matrizes,vetores,doWhile&#10;&#10;Itens prontos:&#10;- Modelagem do programa;&#10;- Tela inicial;&#10;- Menus;&#10;- Instruções;&#10;- Solicitar e gravar nomes dos jogadores;&#10;- Contagem de rodadas;&#10;- Intercalar jogadores e simbolos;&#10;- Resultado Velha;&#10;- Métodos para criar matriz e suas posições;&#10;- Métodos win e tie para reinicar rodada&#10;&#10;&#10;&#10;Faltam os seguintes itens:&#10;- Completar função gamer;&#10;- Preencher função checkWinner;&#10;- Preencher a função score;&#10;- Tratamento de erros.">
-      <change afterPath="$PROJECT_DIR$/src/teste/teste2.java" afterDir="false" />
+    <list default="true" id="aeca3482-599b-4457-a83b-75eaff9c01a6" name="Changes" comment="[04/10] Refatoração do código&#10;&#10;Pendências:&#10;- Erro de posições repetidas (Laura);&#10;- Erro de dar velha na rodada que ganha (Jessica);&#10;- Tratar as entradas do usuário para as posições;&#10;- Refatorar método &quot;game&quot; para ficar otimizado.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/teste/teste2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teste/teste2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +37,19 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="code_Refactor" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="JessicaTeixeiraMaciel" />
+        <option name="repository" value="ProjetoFinal_Modulo1_Deva" />
+      </RepoCoordinatesHolder>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -54,18 +62,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/jteix/IdeaProjects/ProjetoFinal_Modulo1_Deva",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jteix/IdeaProjects/ProjetoFinal_Modulo1_Deva&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -74,6 +85,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664649186257</updated>
+      <workItem from="1664979440459" duration="3571000" />
+      <workItem from="1665011336370" duration="6662000" />
     </task>
     <task id="LOCAL-00001" summary="Commit inicial.&#10;&#10;Itens prontos:&#10;- Modelagem do programa;&#10;- Tela inicial;&#10;- Menus;&#10;- Instruções;&#10;- Solicitar e gravar nomes dos jogadores;&#10;- Contagem de rodadas;&#10;- Intercalar jogadores e simbolos;&#10;- Resultado Velha.&#10;&#10;&#10;Faltam os seguintes itens:&#10;- Criar matriz e atribuir suas respectivas posições ao tabuleiro (Classe Board);&#10;- Completar função gamer;&#10;- Preencher função checkWinner;&#10;- Preencher a função score;&#10;- Completar a classe win;&#10;- Tratamento de erros.">
       <created>1664691162940</created>
@@ -82,8 +95,25 @@
       <option name="project" value="LOCAL" />
       <updated>1664691162940</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[04/10] Refatoração do código&#10;&#10;Pendências:&#10;- Erro de posições repetidas (Laura);&#10;- Erro de dar velha na rodada que ganha (Jessica);&#10;- Tratar as entradas do usuário para as posições;&#10;- Refatorar método &quot;game&quot; para ficar otimizado.">
+      <created>1664928746996</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664928746996</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[04/10] Refatoração do código&#10;&#10;Pendências:&#10;- Erro de posições repetidas (Laura);&#10;- Erro de dar velha na rodada que ganha (Jessica);&#10;- Tratar as entradas do usuário para as posições;&#10;- Refatorar método &quot;game&quot; para ficar otimizado.">
+      <created>1664928897560</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664928897560</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -99,7 +129,19 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit inicial.&#10;&#10;Itens prontos:&#10;- Modelagem do programa;&#10;- Tela inicial;&#10;- Menus;&#10;- Instruções;&#10;- Solicitar e gravar nomes dos jogadores;&#10;- Contagem de rodadas;&#10;- Intercalar jogadores e simbolos;&#10;- Resultado Velha.&#10;&#10;&#10;Faltam os seguintes itens:&#10;- Criar matriz e atribuir suas respectivas posições ao tabuleiro (Classe Board);&#10;- Completar função gamer;&#10;- Preencher função checkWinner;&#10;- Preencher a função score;&#10;- Completar a classe win;&#10;- Tratamento de erros." />
     <MESSAGE value="Updates:&#10;Ajustes da funções checkWinner, score.&#10;Criação da EndGame.&#10;Criação da função endRound.&#10;&#10;Falta apenas o tratamento de erros:&#10;- Possíveis exceções (try catch);&#10;- Não deixar posições to tabuleiro se sobreescreverem." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates:&#10;Ajustes da funções checkWinner, score.&#10;Criação da EndGame.&#10;Criação da função endRound.&#10;&#10;Falta apenas o tratamento de erros:&#10;- Possíveis exceções (try catch);&#10;- Não deixar posições to tabuleiro se sobreescreverem." />
+    <MESSAGE value="[04/10] Refatoração do código&#10;&#10;Pendências:&#10;- Erro de posições repetidas (Laura);&#10;- Erro de dar velha na rodada que ganha (Jessica);&#10;- Tratar as entradas do usuário para as posições;&#10;- Refatorar método &quot;game&quot; para ficar otimizado." />
+    <option name="LAST_COMMIT_MESSAGE" value="[04/10] Refatoração do código&#10;&#10;Pendências:&#10;- Erro de posições repetidas (Laura);&#10;- Erro de dar velha na rodada que ganha (Jessica);&#10;- Tratar as entradas do usuário para as posições;&#10;- Refatorar método &quot;game&quot; para ficar otimizado." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/teste/teste2.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ProjetoFinal_Modulo1_Deva$Teste.ic" NAME="Teste Coverage Results" MODIFIED="1664824538342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
