@@ -6,16 +6,20 @@ public class OptionsMenu {
     public static void optionsMenu(String[] args){
         Scanner sc = new Scanner(System.in);
         CleanScreen.cleanScreen();
+
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_PURPLE = "\u001B[35m";
+
         System.out.println(
-                "|---------------------------------------------------------------------------------------------------------|\n" +
-                        "|                                                  MENU                                                   |\n" +
+                ANSI_PURPLE +"|---------------------------------------------------------------------------------------------------------|\n" +
+                        "|                                                  " + ANSI_RESET + "MENU" + ANSI_PURPLE + "                                                   |\n" +
                         "|---------------------------------------------------------------------------------------------------------|\n" +
-                        "| Insira 'i' para ver instruções                                                                          |\n" +
-                        "| Insira 'r' para reiniciar o jogo                                                                        |\n" +
-                        "| Insira 's' para sair                                                                                    |\n" +
-                        "| Ou insira qualquer outro digito para retomar a partida                                                  |\n" +
-                        "|---------------------------------------------------------------------------------------------------------|\n" +
-                "Insira sua opção aqui:");
+                        "| "+ ANSI_RESET + "Insira 'i' para ver instruções" + ANSI_PURPLE + "                                                                          |\n" +
+                        "| "+ ANSI_RESET + "Insira 'r' para reiniciar o jogo" + ANSI_PURPLE + "                                                                        |\n" +
+                        "| "+ ANSI_RESET + "Insira 's' para sair" + ANSI_PURPLE + "                                                                                    |\n" +
+                        "| "+ ANSI_RESET + "Ou insira qualquer outro digito para retomar a partida.        " + ANSI_PURPLE + "                                         |\n" +
+                        "|---------------------------------------------------------------------------------------------------------|\n"  + ANSI_RESET +
+                        "Insira sua opção aqui:");
 
         String choose = sc.next().toLowerCase();
 

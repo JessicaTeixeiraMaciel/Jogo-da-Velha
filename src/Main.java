@@ -60,9 +60,11 @@ public class Main {
 
             //Armazenará a numeração partida
             int turn = 0;
+            boolean winner = false;
 
             Scanner sc = new Scanner(System.in);
-            while ((!checkWinner(boardPositions)) && (turn <= 8)) {
+            while ((!winner && turn <= 8))
+            {
 
             //Intercala as jogadas entre os jogadores '1' e '2'.
             turn++;
@@ -74,39 +76,37 @@ public class Main {
                 playerSymbol = playerTwoSymbol;
             }
 
-            System.out.printf("\nÉ a vez do '%s' jogar! %s, escolha uma posição livre:", playerSymbol, player);
+            System.out.printf("\nÉ a vez do '%s' jogar! %s, escolha uma posição livre.", playerSymbol, player);
 
             //Chama método que exibe o tabuleiro.
             board(boardPositions);
 
             // Tratar as entradas do jogador
             System.out.println("Informe sua jogada:");
-            String choice = sc.next();
-            // Tratar entrada, digitar uma entrada válida (>0 e <10,numérico), método getChoice (para ja ir na retirada do indice tratado)
+//            String choice = sc.next();
 
             // transformar a posição escolhida em um array com os índices
-            int[] index = getChoiceIndex(choice);
-            boolean teste = availablePosition(index,boardPositions);
+            int[] index = getChoiceIndex(sc);
+//            boolean validPosition = availablePosition(index,boardPositions);
 
             // Checa a posição está disponível
-            while (!teste){
-                System.out.println("Posição inválida. Escolha uma posição disponível:");
-                board(boardPositions);
-                System.out.println("Nova escolha:");
-                choice = sc.next();
-                index = getChoiceIndex(choice);
-                teste = availablePosition(index,boardPositions);
+            while (!availablePosition(index,boardPositions)){
+                System.err.println("Posição inválida.");
+                System.out.println("Informe novamente a sua jogada:");
+                index = getChoiceIndex(sc);;
             }
 
-            index = getChoiceIndex(choice); // é necessário?
             //Muda a posição escolhida pelo jogador pelo seu símbolo
             changePosition(index, boardPositions, playerSymbol);
+
+            winner = checkWinner(boardPositions);
         }
-            if (turn>=8){
-                tie(boardPositions,playerOne,scoreBoard, playerTwo,args);
-            } else {
+
+            if(winner)
                 win(boardPositions,player,playerOne,scoreBoard, playerTwo,playerSymbol,args);
-            }
+            else
+                tie(boardPositions,playerOne,scoreBoard, playerTwo,args);
+
             round++;
 
             // limpa o tabuleiro
@@ -119,52 +119,78 @@ public class Main {
     //Função que imprime o tabuleiro a partir do vetor de posições atuais
 
     public static void board(String[][] positions) {
-        System.out.printf("\n|-----|-----|-----|\n" +
-                "|  %s  |  %s  |  %s  |\n" +
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_PURPLE = "\u001B[35m";
+        System.out.printf(ANSI_PURPLE + "\n|-----|-----|-----|\n" +
+                "|  " + ANSI_RESET + "%s" + ANSI_PURPLE + "  |  " + ANSI_RESET + "%s" + ANSI_PURPLE + "  |  " + ANSI_RESET + "%s" + ANSI_PURPLE + "  |\n" +
                 "|-----|-----|-----|\n" +
-                "|  %s  |  %s  |  %s  |\n" +
+                "|  " + ANSI_RESET + "%s" + ANSI_PURPLE + "  |  " + ANSI_RESET + "%s" + ANSI_PURPLE + "  |  " + ANSI_RESET + "%s" + ANSI_PURPLE + "  |\n" +
                 "|-----|-----|-----|\n" +
-                "|  %s  |  %s  |  %s  |\n" +
-                "|-----|-----|-----|\n", positions[0][0], positions[0][1], positions[0][2], positions[1][0], positions[1][1], positions[1][2], positions[2][0], positions[2][1], positions[2][2]);
+                "|  " + ANSI_RESET + "%s" + ANSI_PURPLE + "  |  " + ANSI_RESET + "%s" + ANSI_PURPLE + "  |  " + ANSI_RESET + "%s" + ANSI_PURPLE + "  |\n" +
+                "|-----|-----|-----|\n" + ANSI_RESET, positions[0][0], positions[0][1], positions[0][2], positions[1][0], positions[1][1], positions[1][2], positions[2][0], positions[2][1], positions[2][2]);
     }
 
     // armazena em um vetor as posições na matriz da escolha
-    public static int[] getChoiceIndex(String choice){
-        int i = 0,j=0;
-        switch (choice) {
-            case "1":
+    public static int[] getChoiceIndex(Scanner sc){
+        int i = 0,j=0, numberChoice = 0;
+
+        while (true)
+        {
+            try
+            {
+                String choice = sc.next();
+                int n = Integer.parseInt(choice);
+
+                if(n > 0 && n < 10)
+                {
+                    numberChoice = n;
+                    break;
+                }
+            }
+
+            catch (Exception e){}
+
+            String ANSI_RESET = "\u001B[0m";
+            String ANSI_RED = "\u001B[31m";
+
+            System.out.println(ANSI_RED + "Caracter inválido." +  ANSI_RESET);
+            System.out.println("Informe novamente a sua jogada:");
+
+        }
+        switch (numberChoice) {
+            case 1:
                 i=0;
                 j=0;
                 break;
-            case "2":
+            case 2:
                 i=0;
                 j=1;
                 break;
-            case "3":
+            case 3:
                 i=0;
                 j=2;
                 break;
-            case "4":
+            case 4:
                 i=1;
                 j=0;
                 break;
-            case "5":
+            case 5:
                 i=1;
                 j=1;
                 break;
-            case "6":
+            case 6:
                 i=1;
                 j=2;
                 break;
-            case "7":
+            case 7:
                 i=2;
                 j=0;
                 break;
-            case "8":
+            case 8:
                 i=2;
                 j=1;
                 break;
-            case "9":
+            case 9:
                 i=2;
                 j=2;
                 break;
@@ -198,18 +224,25 @@ public class Main {
     // Função que retorna a variável de controle do DoWhile caso haja vencedor
     public static void win(String[][] boardPositions, String player, String playerOne, int[] scoreBoard, String playerTwo, String playerSymbol,String[] args){
 
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_PURPLE = "\u001B[35m";
+
         if (player.equals(playerOne)){
             scoreBoard[0]++;
         } else{
             scoreBoard[1]++;
         }
-        System.err.printf("\n'%s' VENCEU A RODADA! %s MARCA +1 PONTO.\n", playerSymbol, player);
+        System.out.printf(ANSI_PURPLE + "\n'%s' VENCEU A RODADA! %s MARCA +1 PONTO.\n" + ANSI_RESET , playerSymbol, player);
         score(playerOne,scoreBoard, playerTwo);
         endRound(boardPositions, "Revanche?",playerOne,scoreBoard, playerTwo,args);
     }
 
     public static void tie(String[][] boardPositions, String playerOne, int[] scoreBoard, String playerTwo,String[] args){
-        System.err.println("\nDEU VELHA!!! NINGUÉM MARCA PONTO.");
+
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_YELLOW = "\u001B[33m";
+
+        System.out.println(ANSI_YELLOW + "\nDEU VELHA!!! NINGUÉM MARCA PONTO." + ANSI_RESET);
         score(playerOne,scoreBoard, playerTwo);
         endRound(boardPositions, "Jogar novamente?",playerOne,scoreBoard, playerTwo,args);
     }
@@ -217,7 +250,9 @@ public class Main {
     public static void endRound (String[][] boardPositions, String playAgain, String playerOne, int[] scoreBoard, String playerTwo,String[] args){
         Scanner sc = new Scanner(System.in);
         board(boardPositions);
-        System.out.println("\n---------------------------------------------- FIM DA RODADA ----------------------------------------------");
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_PURPLE = "\u001B[35m";
+        System.out.println(ANSI_PURPLE + "\n---------------------------------------------- "+ ANSI_RESET +"FIM DA RODADA"+ ANSI_PURPLE +" ----------------------------------------------" + ANSI_RESET);
         System.out.println(playAgain + " (s/n)\n" +
                 "Para acessar o menu de opções insira qualquer outro digito:");
         String choose = sc.next().toLowerCase();
