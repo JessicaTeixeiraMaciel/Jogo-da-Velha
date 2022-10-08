@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeca3482-599b-4457-a83b-75eaff9c01a6" name="Changes" comment="[03/10] Implementação de matrizes,vetores,doWhile&#10;&#10;Itens prontos:&#10;- Modelagem do programa;&#10;- Tela inicial;&#10;- Menus;&#10;- Instruções;&#10;- Solicitar e gravar nomes dos jogadores;&#10;- Contagem de rodadas;&#10;- Intercalar jogadores e simbolos;&#10;- Resultado Velha;&#10;- Métodos para criar matriz e suas posições;&#10;- Métodos win e tie para reinicar rodada&#10;&#10;&#10;&#10;Faltam os seguintes itens:&#10;- Completar função gamer;&#10;- Preencher função checkWinner;&#10;- Preencher a função score;&#10;- Tratamento de erros.">
+    <list default="true" id="aeca3482-599b-4457-a83b-75eaff9c01a6" name="Changes" comment="Tratamento de Erros">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HomeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HomeMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OptionsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OptionsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rounds.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Title.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Title.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +58,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/jteix/IdeaProjects/ProgramaDevaB3",
+    "last_opened_file_path": "C:/Users/jteix/IdeaProjects/ProjetoFinal_Modulo1_Deva",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -86,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664691162940</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Tratamento de Erros">
+      <created>1665186131860</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665186131860</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -103,7 +105,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit inicial.&#10;&#10;Itens prontos:&#10;- Modelagem do programa;&#10;- Tela inicial;&#10;- Menus;&#10;- Instruções;&#10;- Solicitar e gravar nomes dos jogadores;&#10;- Contagem de rodadas;&#10;- Intercalar jogadores e simbolos;&#10;- Resultado Velha.&#10;&#10;&#10;Faltam os seguintes itens:&#10;- Criar matriz e atribuir suas respectivas posições ao tabuleiro (Classe Board);&#10;- Completar função gamer;&#10;- Preencher função checkWinner;&#10;- Preencher a função score;&#10;- Completar a classe win;&#10;- Tratamento de erros." />
     <MESSAGE value="Updates:&#10;Ajustes da funções checkWinner, score.&#10;Criação da EndGame.&#10;Criação da função endRound.&#10;&#10;Falta apenas o tratamento de erros:&#10;- Possíveis exceções (try catch);&#10;- Não deixar posições to tabuleiro se sobreescreverem." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates:&#10;Ajustes da funções checkWinner, score.&#10;Criação da EndGame.&#10;Criação da função endRound.&#10;&#10;Falta apenas o tratamento de erros:&#10;- Possíveis exceções (try catch);&#10;- Não deixar posições to tabuleiro se sobreescreverem." />
+    <MESSAGE value="Tratamento de Erros" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tratamento de Erros" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ProjetoFinal_Modulo1_Deva$Teste.ic" NAME="Teste Coverage Results" MODIFIED="1664824538342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

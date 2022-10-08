@@ -83,11 +83,9 @@ public class Main {
 
             // Tratar as entradas do jogador
             System.out.println("Informe sua jogada:");
-//            String choice = sc.next();
 
             // transformar a posição escolhida em um array com os índices
             int[] index = getChoiceIndex(sc);
-//            boolean validPosition = availablePosition(index,boardPositions);
 
             // Checa a posição está disponível
             while (!availablePosition(index,boardPositions)){
@@ -98,7 +96,6 @@ public class Main {
 
             //Muda a posição escolhida pelo jogador pelo seu símbolo
             changePosition(index, boardPositions, playerSymbol);
-
             winner = checkWinner(boardPositions);
         }
 
@@ -112,7 +109,6 @@ public class Main {
             // limpa o tabuleiro
             boardPositions = new String[][]{{"1", "2", "3"}, {"4", "5", "6"}, {"7", "8", "9"}};
         } while (rematch);
-
         CleanScreen.cleanScreen();
     }
 
