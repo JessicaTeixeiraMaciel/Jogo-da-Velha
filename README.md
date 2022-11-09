@@ -1,7 +1,5 @@
 # Jogo da Velha
 
-#### Desafio final do módulo 01 do programa Devª, realizado pela Let's Code from Ada em parceria com a B3.
-
 Enunciado:
 - Utilizar o Scanner;
 - O jogo deverá ter dois jogadores e pedir para informar os nomes deles;
