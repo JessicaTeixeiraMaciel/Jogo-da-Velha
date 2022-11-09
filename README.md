@@ -1,5 +1,6 @@
 # Jogo da Velha
 
+#### Desafio do módulo 01 do Devª , programa de formação em java realizado pela em Ada em parceria com a B3.
 Enunciado:
 - Utilizar o Scanner;
 - O jogo deverá ter dois jogadores e pedir para informar os nomes deles;
